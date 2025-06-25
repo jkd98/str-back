@@ -325,10 +325,11 @@ const verificarCodigo = async (req, res) => {
 
         res.cookie('_jwtn', token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
+            secure: true,         // Asegura que solo se envíe por HTTPS (Render lo usa)
+            sameSite: 'None',     // CLAVE para que funcione entre Netlify y Render
             maxAge: 1000 * 60 * 60 * 24 * 2
         });
+
 
         respuesta.status = 'success';
         respuesta.msg = 'Autenticación completada';

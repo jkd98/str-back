@@ -5,7 +5,8 @@ const conectarDB = async () => {
         const conection = await mongoose.connect(process.env.MONGO_URI);
 
         let url = `${conection.connection.host}:${conection.connection.port}`;
-        console.log(`MongoDB Conectado en: ${url}`)
+        //console.log(`MongoDB Conectado en: ${url}`)
+        console.log(`MongoDB Conectado en`)
     }catch(error){
         console.warn(`error: ${error}`);
         process.exit(1); //para forzar a que el proceso termine

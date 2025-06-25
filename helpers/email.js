@@ -10,7 +10,7 @@ const emailRegistro = async (datos) => {
             pass: process.env.EMAIL_PASS
         }
     });
-    console.log(datos);
+    //console.log(datos);
     const { email, name, token } = datos;
     const domainn = 'EventStar.com'
 
@@ -45,7 +45,7 @@ const emailOlvidePass = async (datos) => {
             pass: process.env.EMAIL_PASS
         }
     });
-    console.log(datos);
+    //console.log(datos);
     const { email, name, token } = datos;
     const domainn = 'EventStar.com'
 

@@ -20,7 +20,7 @@ const crearCiudad = async (req, res) => {
     respuesta.data = city;
     res.status(201).json(respuesta);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     respuesta.status = "error";
     respuesta.msg = "Error al crear ciudad";
     res.status(400).json(respuesta);
@@ -38,7 +38,7 @@ const listarCiudades = async (req, res) => {
     respuesta.data = ciudades;
     res.json(respuesta);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     respuesta.status = "error";
     respuesta.msg = "Error al obtener ciudades";
     res.status(500).json(respuesta);
@@ -62,7 +62,7 @@ const obtenerCiudad = async (req, res) => {
     respuesta.data = ciudad;
     res.json(respuesta);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     respuesta.status = "error";
     respuesta.msg = "Error al obtener ciudad";
     res.status(500).json(respuesta);
@@ -90,7 +90,7 @@ const actualizarCiudad = async (req, res) => {
     respuesta.data = ciudad;
     res.json(respuesta);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     respuesta.status = "error";
     respuesta.msg = "Error al actualizar ciudad";
     res.status(400).json(respuesta);
@@ -115,7 +115,7 @@ const eliminarCiudad = async (req, res) => {
     respuesta.data = ciudad;
     res.json(respuesta);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     respuesta.status = "error";
     respuesta.msg = "Error al eliminar ciudad";
     res.status(500).json(respuesta);

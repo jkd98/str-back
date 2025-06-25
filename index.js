@@ -63,5 +63,6 @@ app.use("/areas", areaInteresRoutes);
 
 app.listen(port, () => {
     // http://localhost:3050/
-    console.log(`Server is running on http://localhost:${port}`);
+    //console.log(`Server is running on http://localhost:${port}`);
+    console.log(`Server is running on http://localhost`);
 });

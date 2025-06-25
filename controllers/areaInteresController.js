@@ -20,7 +20,7 @@ const crearArea = async (req, res) => {
     respuesta.data = area;
     res.status(201).json(respuesta);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     respuesta.status = "error";
     respuesta.msg = "Error al crear área de interés";
     res.status(400).json(respuesta);
@@ -38,7 +38,7 @@ const listarAreas = async (req, res) => {
     respuesta.data = areas;
     res.json(respuesta);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     respuesta.status = "error";
     respuesta.msg = "Error al obtener las áreas";
     res.status(500).json(respuesta);
@@ -62,7 +62,7 @@ const obtenerArea = async (req, res) => {
     respuesta.data = area;
     res.json(respuesta);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     respuesta.status = "error";
     respuesta.msg = "Error al buscar el área";
     res.status(500).json(respuesta);
@@ -90,7 +90,7 @@ const actualizarArea = async (req, res) => {
     respuesta.data = area;
     res.json(respuesta);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     respuesta.status = "error";
     respuesta.msg = "Error al actualizar el área";
     res.status(400).json(respuesta);
@@ -115,7 +115,7 @@ const eliminarArea = async (req, res) => {
     respuesta.data = area;
     res.json(respuesta);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     respuesta.status = "error";
     respuesta.msg = "Error al eliminar el área";
     res.status(500).json(respuesta);

@@ -17,7 +17,7 @@ const registrarUsuario = async (req, res, next) => {
 
     try {
         const { pass, ...userData } = req.body;
-        console.log(req.body);
+        //console.log(req.body);
 
         // Verificar si el email ya está registrado
         const existeUsuario = await Usuario.findOne({ email: userData.email });
@@ -50,7 +50,7 @@ const registrarUsuario = async (req, res, next) => {
         res.status(201).json(respuesta);
 
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         respuesta.status = 'error';
         respuesta.msg = 'Error al registrar el usuario';
         res.status(500).json(respuesta);
@@ -81,7 +81,7 @@ const confirmarUsuario = async (req, res) => {
         res.json(respuesta);
 
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         respuesta.status = 'error';
         respuesta.msg = 'Error al confirmar la cuenta';
         res.status(500).json(respuesta);
@@ -100,7 +100,7 @@ const listarUsuarios = async (req, res, next) => {
         respuesta.data = usuarios;
         res.json(respuesta);
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         respuesta.status = 'error';
         respuesta.msg = 'Error al listar usuarios';
         res.status(500).json(respuesta);
@@ -126,7 +126,7 @@ const obtenerUsuario = async (req, res, next) => {
         respuesta.data = usuario;
         res.json(respuesta);
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         respuesta.status = 'error';
         respuesta.msg = 'Error al obtener el usuario';
         res.status(500).json(respuesta);
@@ -164,7 +164,7 @@ const editarUsuario = async (req, res, next) => {
         res.json(respuesta);
 
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         respuesta.status = 'error';
         respuesta.msg = 'Error al actualizar el usuario';
         res.status(500).json(respuesta);
@@ -192,7 +192,7 @@ const eliminarUsuario = async (req, res, next) => {
         res.json(respuesta);
 
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         respuesta.status = 'error';
         respuesta.msg = 'Error al eliminar el usuario';
         res.status(500).json(respuesta);
@@ -275,7 +275,7 @@ const loginUsuario = async (req, res) => {
         return res.json(respuesta);
 
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         respuesta.status = 'error';
         respuesta.msg = 'Error al iniciar sesión';
         res.status(500).json(respuesta);
@@ -336,7 +336,7 @@ const verificarCodigo = async (req, res) => {
         res.json(respuesta);
 
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         respuesta.status = 'error';
         respuesta.msg = 'Error al verificar el código';
         res.status(500).json(respuesta);
@@ -359,7 +359,7 @@ const logoutUsuario = async (req, res) => {
         res.json(respuesta);
 
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         respuesta.status = 'error';
         respuesta.msg = 'Error al cerrar sesión';
         res.status(500).json(respuesta);
@@ -406,7 +406,7 @@ const resetPasswordToken = async (req, res) => {
         res.json(respuesta);
 
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         respuesta.status = 'error';
         respuesta.msg = 'Hubo un error al generar el token';
         res.status(500).json(respuesta);
@@ -434,7 +434,7 @@ const comprobarResetToken = async (req, res) => {
         res.json(respuesta);
 
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         respuesta.status = 'error';
         respuesta.msg = 'Error al validar el token';
         respuesta.data = false;
@@ -483,7 +483,7 @@ const nuevoPassword = async (req, res) => {
         res.json(respuesta);
 
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         respuesta.status = 'error';
         respuesta.msg = 'Error al reestablecer el password';
         res.status(500).json(respuesta);

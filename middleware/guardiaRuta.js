@@ -32,7 +32,7 @@ const checkAuth = async (req, res, next) => {
         next();
 
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         return res.status(401).json({
             status: 'error',
             msg: 'Token inválido o expirado',

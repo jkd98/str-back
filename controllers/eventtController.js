@@ -15,7 +15,7 @@ const crearEvento = async (req, res) => {
 
     try {
         const { date } = req.body;
-        console.log(req.body);
+        //console.log(req.body);
 
         // Validar fecha
         // Validación 2: la fecha nueva no puede estar en el pasado
@@ -58,7 +58,7 @@ const crearEvento = async (req, res) => {
         res.status(201).json(respuesta);
 
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         respuesta.status = 'error';
         respuesta.msg = 'Error al crear el evento';
         res.status(400).json(respuesta);
@@ -111,7 +111,7 @@ const obtenerEvento = async (req, res) => {
         res.json(respuesta);
 
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         respuesta.status = 'error';
         respuesta.msg = 'Error al obtener el evento';
         res.status(500).json(respuesta);
@@ -121,8 +121,8 @@ const obtenerEvento = async (req, res) => {
 // Actualizar un evento
 const editarEvento = async (req, res) => {
     let respuesta = new Respuesta();
-    console.log(req.usuario);
-    console.log(req.body);
+    //console.log(req.usuario);
+    //console.log(req.body);
     try {
         const { id } = req.params;
         const nuevosDatos = req.body;
@@ -182,7 +182,7 @@ const editarEvento = async (req, res) => {
         res.json(respuesta);
 
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         respuesta.status = 'error';
         respuesta.msg = 'Error al actualizar el evento';
         res.status(500).json(respuesta);
@@ -208,7 +208,7 @@ const eliminarEvento = async (req, res) => {
         res.json(respuesta);
 
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         respuesta.status = 'error';
         respuesta.msg = 'Error al eliminar el evento';
         res.status(500).json(respuesta);
@@ -223,7 +223,7 @@ const agregarParticipante = async (req, res) => {
         const { idEvento } = req.params;
         const { idUsuario } = req.body;
 
-        console.log(idUsuario, idEvento);
+        //console.log(idUsuario, idEvento);
         const evento = await Eventt.findById(idEvento);
 
         if (!evento) {
@@ -260,7 +260,7 @@ const agregarParticipante = async (req, res) => {
         res.json(respuesta);
 
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         respuesta.status = 'error';
         respuesta.msg = 'Error al añadir participante';
         res.status(500).json(respuesta);
@@ -301,7 +301,7 @@ const anularReserva = async (req, res) => {
         res.json(respuesta);
 
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         respuesta.status = 'error';
         respuesta.msg = 'Error al anular la reservación';
         res.status(500).json(respuesta);
@@ -342,7 +342,7 @@ const cambiarEstadoPublicado = async (req, res) => {
         res.json(respuesta);
 
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         respuesta.status = 'error';
         respuesta.msg = 'Error al cambiar el estado de publicación';
         res.status(500).json(respuesta);
@@ -421,7 +421,7 @@ const suscripcion = async (req, res) => {
     try {
         const { email } = req.body;
         const user = await Usuario.findOne({ email });
-        console.log(user);
+        //console.log(user);
         if (!user) {
             respuesta.status = 'error';
             respuesta.msg = 'No se econtró al usuario';
@@ -429,7 +429,7 @@ const suscripcion = async (req, res) => {
         }
 
         const isSuscript = await Suscripcion.findOne({user:user._id}).populate('user');
-        console.log(isSuscript);
+        //console.log(isSuscript);
         if (isSuscript) {
             respuesta.status = 'error';
             respuesta.msg = 'Esta cuenta ya esta suscrita';
@@ -444,7 +444,7 @@ const suscripcion = async (req, res) => {
         respuesta.data = susc;
         return res.status(201).json(respuesta);
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         respuesta.status = 'error';
         respuesta.msg = 'Error al suscribirse';
         return res.status(400).json(respuesta);

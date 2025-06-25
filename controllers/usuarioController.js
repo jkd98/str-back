@@ -351,8 +351,8 @@ const logoutUsuario = async (req, res) => {
         // Limpia la cookie del JWT
         res.clearCookie('_jwtn', {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict'
+            secure: true,
+            sameSite: 'None'
         });
 
         respuesta.status = 'success';

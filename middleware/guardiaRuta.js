@@ -3,7 +3,7 @@ import Usuario from '../models/Usuario.js';
 
 const checkAuth = async (req, res, next) => {
     const token = req.cookies._jwtn;
-
+    console.log('cookie-tkn',token);
     if (!token) {
         return res.status(401).json({
             status: 'error',

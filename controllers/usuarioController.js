@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt";
+import jwt from 'jsonwebtoken';
 
 import Usuario from "../models/Usuario.js";
 import { generarId, generarJWT } from "../helpers/generarId.js";
@@ -31,22 +32,29 @@ const registrarUsuario = async (req, res, next) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(pass, salt);
 
-        // Crear el usuario
+        /* // Crear el usuario
         const usuario = new Usuario({
             ...userData,
             pass: hashedPassword,
             token: generarId()
-        });
+        }); */
+        const payload = {
+            ...userData,
+            pass: hashedPassword,
+        }
 
-        await usuario.save();
+        //await usuario.save();
+        //console.log('Usuario nuevo \n', payload);
+        const { email, name } = payload;
+        const token = generarJWT(payload);
 
-        const { email, name, token } = usuario;
+
 
         emailRegistro({ email, name, token });
 
         respuesta.status = 'success';
-        respuesta.msg = 'Usuario registrado correctamente';
-        respuesta.data = { id: usuario._id };
+        respuesta.msg = 'Registro completado, enviando token de confirmación';
+        respuesta.data = null;
         res.status(201).json(respuesta);
 
     } catch (error) {
@@ -64,17 +72,32 @@ const confirmarUsuario = async (req, res) => {
     try {
         const { token } = req.params;
 
-        const usuario = await Usuario.findOne({ token });
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        //console.log(decoded);
+        // Buscar al usuario
+        const usuario = await Usuario.findOne({ email: decoded.email })
 
-        if (!usuario) {
+        if (usuario) {
             respuesta.status = 'error';
-            respuesta.msg = 'Token inválido o usuario ya confirmado';
+            respuesta.msg = 'El correo ya esta confirmado';
             return res.status(400).json(respuesta);
         }
 
-        usuario.confirm = true;
+        /* usuario.confirm = true;
         usuario.token = ""; // Limpia el token
-        await usuario.save();
+        await usuario.save(); */
+
+        const { name, lastN, email, address, pass } = decoded;
+        const nwUser = new Usuario({
+            name,
+            lastN, 
+            email,
+            address,
+            pass,
+        });
+
+        //console.log('nuevo \n',nwUser);
+        await nwUser.save();
 
         respuesta.status = 'success';
         respuesta.msg = 'Cuenta confirmada correctamente';
@@ -325,11 +348,10 @@ const verificarCodigo = async (req, res) => {
 
         res.cookie('_jwtn', token, {
             httpOnly: true,
-            secure: true,         // Asegura que solo se envíe por HTTPS (Render lo usa)
-            sameSite: 'None',     // CLAVE para que funcione entre Netlify y Render
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
             maxAge: 1000 * 60 * 60 * 24 * 2
         });
-
 
         respuesta.status = 'success';
         respuesta.msg = 'Autenticación completada';
@@ -351,8 +373,8 @@ const logoutUsuario = async (req, res) => {
         // Limpia la cookie del JWT
         res.clearCookie('_jwtn', {
             httpOnly: true,
-            secure: true,
-            sameSite: 'None'
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict'
         });
 
         respuesta.status = 'success';

@@ -348,8 +348,8 @@ const verificarCodigo = async (req, res) => {
 
         res.cookie('_jwtn', token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
+            secure: true,
+            sameSite: 'None',
             maxAge: 1000 * 60 * 60 * 24 * 2
         });
 
@@ -373,8 +373,8 @@ const logoutUsuario = async (req, res) => {
         // Limpia la cookie del JWT
         res.clearCookie('_jwtn', {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict'
+            secure: true,
+            sameSite: 'None'
         });
 
         respuesta.status = 'success';
